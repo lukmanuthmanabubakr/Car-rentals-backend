@@ -6,6 +6,7 @@ import connectDB from "./configs/db.js";
 // Lets Initialize Express App
 const app = express()
 
+//Connect Database
 await connectDB()
 
 //Middleware
