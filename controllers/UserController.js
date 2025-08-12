@@ -33,7 +33,6 @@ export const RegisterUser = async (req, res) => {
 };
 
 //To Login User
-
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,6 +46,20 @@ export const loginUser = async (req, res) => {
     }
     const token = generateToken(user._id.toString());
     res.json({ success: true, token });
+  } catch (error) {
+    console.log(error.message);
+    return res.json({ success: false, message: error.message });
+  }
+};
+
+//To Get User
+export const getUser = async (req, res) => {
+  try {
+    const { user } = req;
+    res.json({
+      success: true,
+      user,
+    });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
