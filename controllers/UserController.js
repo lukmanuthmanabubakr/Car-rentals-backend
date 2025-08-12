@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -25,7 +25,7 @@ export const RegisterUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, password: hashedPassword });
     const token = generateToken(user._id.toString());
-    res.join({ success: true, token });
+    res.json({ success: true, token });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
@@ -46,7 +46,7 @@ export const loginUser = async (req, res) => {
       return res.json({ success: false, message: "Password Incorrect" });
     }
     const token = generateToken(user._id.toString());
-    res.join({ success: true, token });
+    res.json({ success: true, token });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
