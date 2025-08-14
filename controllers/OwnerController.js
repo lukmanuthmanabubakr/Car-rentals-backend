@@ -35,8 +35,8 @@ export const addCar = async (req, res) => {
         {
           width: "1280",
         },
-        { quality: "auto" },
-        {format: 'webp'}
+        { quality: "auto" }, //Auto Compression
+        { format: "webp" },
       ],
     });
   } catch (error) {
