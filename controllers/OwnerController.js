@@ -1,4 +1,5 @@
 import imagekit from "../configs/imageKit.js";
+import Car from "../models/Car.js";
 import User from "../models/User.js";
 import fs from "fs";
 
@@ -39,6 +40,9 @@ export const addCar = async (req, res) => {
         { format: "webp" },
       ],
     });
+
+    const image = optimizedImageUrl;
+    await Car
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
