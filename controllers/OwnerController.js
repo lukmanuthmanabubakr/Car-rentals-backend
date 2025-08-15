@@ -42,7 +42,7 @@ export const addCar = async (req, res) => {
     });
 
     const image = optimizedImageUrl;
-    await Car
+    await Car.create({...car, owner: _id, image})
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
