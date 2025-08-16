@@ -59,7 +59,7 @@ export const getOwnerCars = async (req, res) => {
   try {
     const { _id } = req.user;
     const cars = await Car.find({ owner: _id });
-    return res.json({ success: true, cars});
+    return res.json({ success: true, cars });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
@@ -67,6 +67,14 @@ export const getOwnerCars = async (req, res) => {
 };
 
 // Toggle Available Cars
-export const toggleCarAvailability = async (req, res) =>{
-
-}
+export const toggleCarAvailability = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { carId } = req.body;
+    const cars = await Car.findById(carId);
+    return res.json({ success: true, cars });
+  } catch (error) {
+    console.log(error.message);
+    return res.json({ success: false, message: error.message });
+  }
+};
