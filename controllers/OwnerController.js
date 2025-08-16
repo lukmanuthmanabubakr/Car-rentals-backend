@@ -42,16 +42,31 @@ export const addCar = async (req, res) => {
     });
 
     const image = optimizedImageUrl;
-    await Car.create({...car, owner: _id, image})
+    await Car.create({ ...car, owner: _id, image });
 
     res.json({
-      success: true, message: "Car Added"
-    })
+      success: true,
+      message: "Car Added",
+    });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
   }
 };
 
-
 //List owners car
+export const getOwnerCars = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const cars = await Car.find({ owner: _id });
+    return res.json({ success: true, cars});
+  } catch (error) {
+    console.log(error.message);
+    return res.json({ success: false, message: error.message });
+  }
+};
+
+// Toggle Available Cars
+export const toggleCarAvailability = async (req, res) =>{
+
+}
