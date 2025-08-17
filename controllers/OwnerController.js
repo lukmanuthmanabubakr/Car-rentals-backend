@@ -119,6 +119,10 @@ export const getDashboardData = async (req, res) => {
     if (role !== "owner") {
       return res.json({ success: false, message: "Unauthorized" });
     }
+
+    const cars = await Car.find({
+      owner: _id
+    })
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
