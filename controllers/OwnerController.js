@@ -101,10 +101,24 @@ export const deleteCar = async (req, res) => {
     }
 
     car.owner = null;
-    car.isAvailable = false
+    car.isAvailable = false;
     await car.save();
 
     res.json({ success: true, message: "Car Removed" });
+  } catch (error) {
+    console.log(error.message);
+    return res.json({ success: false, message: error.message });
+  }
+};
+
+//Api to get dahsboard data
+export const getDashboardData = async (req, res) => {
+  try {
+    const { _id, role } = req.user;
+
+    if (role !== "owner") {
+      return res.json({ success: false, message: "Unauthorized" });
+    }
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
