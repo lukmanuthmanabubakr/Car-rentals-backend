@@ -71,8 +71,17 @@ export const toggleCarAvailability = async (req, res) => {
   try {
     const { _id } = req.user;
     const { carId } = req.body;
-    const cars = await Car.findById(carId);
-    return res.json({ success: true, cars });
+    const car = await Car.findById(carId);
+
+    //Checking if car belongs to the user
+    if (car.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "Unauthorized"});
+    }
+
+    car.isAvailable = !car.isAvailable;
+    await car.save()
+
+    res.json({ success: true, car });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
