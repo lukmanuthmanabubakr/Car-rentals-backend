@@ -73,3 +73,6 @@ export const createBooking = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
+//Api to list User Bookings
