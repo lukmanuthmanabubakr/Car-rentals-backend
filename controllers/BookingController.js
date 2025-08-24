@@ -109,7 +109,10 @@ export const getOwnerBookings = async (req, res) => {
 //Api to change booking status
 export const changeBookingStatus = async (req, res) => {
   try {
-   
+    const { _id } = req.user;
+    const {bookingId} = 
+
+    const booking = await Booking.findById();
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
