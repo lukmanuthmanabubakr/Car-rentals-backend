@@ -110,7 +110,7 @@ export const getOwnerBookings = async (req, res) => {
 export const changeBookingStatus = async (req, res) => {
   try {
     const { _id } = req.user;
-    const {bookingId} = 
+    const {bookingId, status} = req.body
 
     const booking = await Booking.findById();
   } catch (error) {
