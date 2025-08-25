@@ -112,7 +112,7 @@ export const changeBookingStatus = async (req, res) => {
     const { _id } = req.user;
     const {bookingId, status} = req.body
 
-    const booking = await Booking.findById();
+    const booking = await Booking.findById(bookingId);
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
