@@ -5,7 +5,7 @@ import connectDB from "./configs/db.js";
 import userRouter from "./routes/UserRoutes.js";
 import ownerRouter from "./routes/OwnerRoutes.js";
 
-// Lets Initialize Express App
+// Lets  Express App
 const app = express();
 
 //Connect Database
