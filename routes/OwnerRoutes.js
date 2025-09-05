@@ -6,6 +6,7 @@ import {
   getDashboardData,
   getOwnerCars,
   toggleCarAvailability,
+  updateUserImage,
 } from "../controllers/OwnerController.js";
 import { protect } from "../middleware/auth.js";
 import upload from "../middleware/Multer.js";
@@ -18,5 +19,11 @@ ownerRouter.get("/cars", protect, getOwnerCars);
 ownerRouter.post("/toggle-car", protect, toggleCarAvailability);
 ownerRouter.post("/delete-car", protect, deleteCar);
 ownerRouter.get("/dashboard", protect, getDashboardData);
+ownerRouter.post(
+  "/update-image",
+  upload.single("image"),
+  protect,
+  updateUserImage
+);
 
 export default ownerRouter;
