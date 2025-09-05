@@ -143,11 +143,23 @@ export const getDashboardData = async (req, res) => {
       .filter((booking) => booking.status === "confirmed")
       .reduce((acc, booking) => acc + booking.price, 0);
 
-      
+    const dashboardData = {
+      totalCars: cars.length,
+      totalBookings: bookings.length,
+      pendingBookings: pendingBookings.length,
+      completedBookings: completedBookings.length,
+      recentBookings: bookings.slice(0, 3),
+      monthlyRevenue,
+    };
 
-
+    res.json({ success: true, dashboardData });
   } catch (error) {
     console.log(error.message);
     return res.json({ success: false, message: error.message });
   }
 };
+
+// API to update user image
+export const updateUserImage = async (req, res) => {
+  
+}
